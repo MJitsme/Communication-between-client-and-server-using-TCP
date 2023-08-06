@@ -35,3 +35,41 @@ void chat(int connfd)
   }
 }
 
+//main function
+int main()
+{
+  int connfd,sockfd,len;
+  SAI server,client;
+  sockfd=socket(AF_INET,SOCK_STREAM,0);
+  printf("Socket creation successful...\n");
+  server.sin_family=AF_INET;
+  server.sin_addr.s_addr=htonl(INADDR_ANY);
+  server.sin_port=htons(PORT);
+
+  if((bind(sockfd,(SA*)&server,sizeof(server)))==0)
+  {
+    printf("Socket Binding successful\n");
+  }
+  else
+  {
+    printf("Socket Binding Failed");
+    break;
+  }
+
+  if(listen(sockfd,5)==0)
+  {
+    printf("Server listening on port 9014\n");
+  }
+  else
+  {
+    printf("Server not listening...");
+    break;
+  }
+
+  connfd=accept(sockfd,(SA*)&client,(socklen_t*)&len);
+  printf("Server accept client...\n");
+
+  chat(connfd);
+  close(sockfd);
+}
+
