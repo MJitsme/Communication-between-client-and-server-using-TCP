@@ -22,7 +22,7 @@ void chat(int sockfd)
     bzero(buff,MAX);
     printf("Enter the message to server: \n");
     n=0;
-    while((buff[n++]=getchar())!="\n");
+    while((buff[n++]=getchar())!='\n');
     write(sockfd,buff,sizeof(buff));
     bzero(buff,MAX);
     read(sockfd,buff,sizeof(buff));
@@ -53,7 +53,7 @@ int main()
   else
   {
     printf("Connection to server failed!..");
-    break;
+    return 1;
   }
   chat(sockfd);
   close(sockfd);
