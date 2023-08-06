@@ -26,9 +26,9 @@ void chat(int connfd)
     bzero(buff,MAX);
     printf("Enter the message to Client:");
     n=0;
-    while((buff[n++]=getchar())!="\n");
+    while((buff[n++]=getchar())!='\n');
     write(connfd,buff,sizeof(buff));
-    if strncmp((buff,"exit",4)==0)
+    if (strncmp((buff,"exit",4)==0))
     {
       printf("Server exits .... ");
       break;
