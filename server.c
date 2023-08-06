@@ -28,7 +28,7 @@ void chat(int connfd)
     n=0;
     while((buff[n++]=getchar())!='\n');
     write(connfd,buff,sizeof(buff));
-    if (strncmp((buff,"exit",4)==0))
+    if (strncmp(buff,"exit",4)==0)
     {
       printf("Server exits .... ");
       break;
@@ -54,7 +54,7 @@ int main()
   else
   {
     printf("Socket Binding Failed");
-    break;
+    return 1;
   }
 
   if(listen(sockfd,5)==0)
@@ -64,7 +64,7 @@ int main()
   else
   {
     printf("Server not listening...");
-    break;
+    return 1;
   }
   len=sizeof(client);
   connfd=accept(sockfd,(SA*)&client,(socklen_t*)&len);
