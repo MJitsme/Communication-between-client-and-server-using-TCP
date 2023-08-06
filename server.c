@@ -71,5 +71,6 @@ int main()
 
   chat(connfd);
   close(sockfd);
+  return 0;
 }
 
