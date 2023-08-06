@@ -34,5 +34,27 @@ void chat(int sockfd)
   }
 }
 
-    
-    
+
+//main function
+int main()
+{
+  int sockfd;
+  SAI server;
+  sockfd=socket(AF_INET,SOCK_STREAM,0);
+  printf("Socket created successfully...");
+
+  server.sin_family=AF_INET;
+  server.sin_addr.s_addr=htonl(INADDR_ANY);
+  server.sin_port=htons(PORT);
+
+  if(accept(sockfd,(SA*)&server,sizeof(server))==0)
+    printf("Connected to server successfully...\n");
+  else
+  {
+    printf("Connection to server failed!..");
+    break;
+  }
+  chat(sockfd);
+  close(sockfd);
+  return 0;
+}
