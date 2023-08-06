@@ -16,14 +16,14 @@
 //creating function to chat
 void chat(int connfd)
 {
-  char buff[max];
+  char buff[MAX];
   int n;
   while(1)
   {
-    bzero(buff,max);
+    bzero(buff,MAX);
     read(connfd,buff,sizeof(buff));
     printf("message from client: %s",buff);
-    bzero(buff,max);
+    bzero(buff,MAX);
     printf("Enter the message to Client:");
     scanf("%s",buff);
     write(connfd,buff,sizeof(buff));
@@ -65,7 +65,7 @@ int main()
     printf("Server not listening...");
     break;
   }
-
+  len=sizeof(client);
   connfd=accept(sockfd,(SA*)&client,(socklen_t*)&len);
   printf("Server accept client...\n");
 
