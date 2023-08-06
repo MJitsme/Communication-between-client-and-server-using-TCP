@@ -21,7 +21,8 @@ void chat(int sockfd)
   {
     bzero(buff,MAX);
     printf("Enter the message to server: \n");
-    scanf("%s",buff);
+    n=0;
+    while((buff[n++]=getchar())!="\n");
     write(sockfd,buff,sizeof(buff));
     bzero(buff,MAX);
     read(sockfd,buff,sizeof(buff));
@@ -47,7 +48,7 @@ int main()
   server.sin_addr.s_addr=htonl(INADDR_ANY);
   server.sin_port=htons(PORT);
 
-  if(accept(sockfd,(SA*)&server,sizeof(server))==0)
+  if(connect(sockfd,(SA*)&server,sizeof(server))==0)
     printf("Connected to server successfully...\n");
   else
   {
