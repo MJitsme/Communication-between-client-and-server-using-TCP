@@ -25,7 +25,8 @@ void chat(int connfd)
     printf("message from client: %s",buff);
     bzero(buff,MAX);
     printf("Enter the message to Client:");
-    scanf("%s",buff);
+    n=0;
+    while((buff[n++]=getchar())!="\n");
     write(connfd,buff,sizeof(buff));
     if strncmp((buff,"exit",4)==0)
     {
