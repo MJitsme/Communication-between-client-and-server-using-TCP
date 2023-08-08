@@ -24,11 +24,16 @@ void chat(int sockfd)
     n=0;
     while((buff[n++]=getchar())!='\n');
     write(sockfd,buff,sizeof(buff));
+    if(strncmp(buff,"exit")==0)
+    {
+      printf("Client exits ....");
+      break;
+    }
     bzero(buff,MAX);
     read(sockfd,buff,sizeof(buff));
     if(strncmp(buff,"exit")==0)
     {
-      printf("Client exits ....");
+      printf("Client exits as Server exits ....");
       break;
     }
     printf("Message from server: %s\n",buff);
