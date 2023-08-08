@@ -23,6 +23,11 @@ void chat(int connfd)
     bzero(buff,MAX);
     read(connfd,buff,sizeof(buff));
     printf("message from client: %s",buff);
+    if (strncmp(buff,"exit",4)==0)
+    {
+      printf("Server exits as Client exits.... ");
+      break;
+    }
     bzero(buff,MAX);
     printf("Enter the message to Client:");
     n=0;
